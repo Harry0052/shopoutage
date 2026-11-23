@@ -144,8 +144,10 @@ describe("drill state", () => {
     const db = openMemoryDrillState();
     const scenario = parseScenarioBytes(read("fixtures/scenarios/baseline.json"));
     db.prepare(
-      "INSERT INTO run_manifest (scenario_id, adapter_name, adapter_version, time_origin, fixture_sha256) VALUES (?, ?, ?, ?, ?)"
-    ).run(scenario.scenarioId, scenario.adapter.name, scenario.adapter.version, scenario.timeOrigin, "abc");
+      `INSERT INTO run_manifest (
+        scenario_id, adapter_name, adapter_version, time_origin, fixture_sha256, virtual_elapsed_ms, report_state
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)`
+    ).run(scenario.scenarioId, scenario.adapter.name, scenario.adapter.version, scenario.timeOrigin, "abc", 0, "pass");
     const row = db.prepare("SELECT scenario_id, adapter_version FROM run_manifest").get() as {
       scenario_id: string;
       adapter_version: string;

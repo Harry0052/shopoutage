@@ -78,6 +78,16 @@
       "sha256": "edde6b6fc4664fdfa296dbed481b502ba01c5ef9382bc2e8ef5df3794b227b56"
     },
     {
+      "path": "fixtures/oracle/never-converges.md",
+      "label": "oracle",
+      "sha256": "626e095d73f5caf17c4ae020e6f4795bfa0c2ff88b8bdda1acdca3ccc43a7979"
+    },
+    {
+      "path": "fixtures/oracle/restart-after-ack.md",
+      "label": "oracle",
+      "sha256": "f7f9d1e76f7d63812cad0fb61766b497e7ea3b50dd762815db14950e06661e57"
+    },
+    {
       "path": "fixtures/scenarios/baseline.json",
       "label": "valid",
       "sha256": "f0da56cacac9326ae2f6a441764b80c2c93797a222a656d7b1b0caffbc8effa0"
@@ -96,6 +106,21 @@
       "path": "fixtures/scenarios/missing-stock.json",
       "label": "valid",
       "sha256": "8aa87d9c3882d6e9a12365b95c267d76dbf223bace3088d3641bc41bfdf43e56"
+    },
+    {
+      "path": "fixtures/scenarios/never-converges.json",
+      "label": "valid",
+      "sha256": "8c86141deb064cfa56c82d0b16fde9cdbfb83ae920a4dea2f5177d63cc218dee"
+    },
+    {
+      "path": "fixtures/scenarios/odoo-baseline.json",
+      "label": "valid",
+      "sha256": "6f69e2cfeb6dd6e770056260058a008261aa19b6baa54ce50cd81c4c2caa4bac"
+    },
+    {
+      "path": "fixtures/scenarios/restart-after-ack.json",
+      "label": "valid",
+      "sha256": "2d8e1c09c60d4667efe9284b6bf4196f10b680675dc3f7b4653712a1e64caa79"
     }
   ]
 }
