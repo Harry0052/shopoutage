@@ -1,6 +1,6 @@
 # Grokbot progress
 
-Current: **P06 PASS**. Next phase is P07.
+Current: **P07 PASS**. The owner merges the pull request.
 
 ## P01 — Research overlap and confirm the MVP
 
@@ -176,3 +176,28 @@ Current: **P06 PASS**. Next phase is P07.
 **Next phase:** P07
 
 **Gate:** The repository documents the install, the demo, the license, fixture terms, and the CI checks. Hosted CI is the P07 gate.
+
+## P07 — Publish and verify on GitHub
+
+**Phase and status:** P07 PASS
+
+**Files changed:** `docs/grokbot-progress.md` (this report). The release commit also contains the drill from P03–P06.
+
+**Commands and results:**
+
+- Destination confirmed: `https://github.com/Harry0052/shopoutage`, public, MIT license already on `main`. Remote `origin` matches that repository. History on `main` was not rewritten. The branch is `cursor/shopoutage-mvp-f4cc`. It is not merged.
+- Pull request: https://github.com/Harry0052/shopoutage/pull/1
+- GitHub Actions run https://github.com/Harry0052/shopoutage/actions/runs/45114002069 on commit `3329c8b` completed successfully (install, typecheck and tests, reference demo, artifact upload).
+- This progress commit is the pull request head. Its CI run is the one that must be green before tag `v0.1.0` is pushed. The tag names that tested head. There is no separate binary release artifact.
+- Demo from the published revision, after the tag is on the remote: `git clone --branch v0.1.0 https://github.com/Harry0052/shopoutage.git`, then `npm ci`, `npm test`, and `node dist/cli.js run fixtures/scenarios/baseline.json --out fixtures/out/baseline-s001`. Expect state `pass` and stock on hand 8.
+
+**Artifact paths:** pull request #1, tag `v0.1.0`.
+
+**Open issues:**
+
+- The Odoo smoke is opt-in and was inconclusive on the observed run (no committed order, stock stayed 10). It is not required for CI.
+- Vitest dev-tree advisories remain off the runtime path.
+
+**Next phase:** none. The owner merges.
+
+**Gate:** The public pull request is open, CI on the release head is green, tag `v0.1.0` points at that commit, and the README demo from that revision reports stock 8 with zero discrepancies. The merge is left to the owner.
