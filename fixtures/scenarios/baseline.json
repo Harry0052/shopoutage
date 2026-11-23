@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "scenarioId": "baseline-s001",
+  "timeOrigin": "2026-01-01T00:00:00.000Z",
+  "recoveryDeadlineMs": 5000,
+  "stabilityWindowMs": 1000,
+  "currency": "XTS",
+  "minorUnitScale": 100,
+  "seededSkus": [
+    {
+      "sku": "S-001",
+      "openingQty": 10,
+      "unitPrice": "5.00"
+    }
+  ],
+  "intents": [
+    {
+      "intentId": "intent-001",
+      "sku": "S-001",
+      "quantity": 2
+    }
+  ],
+  "connectivity": [
+    { "offsetMs": 0, "event": "submit" },
+    { "offsetMs": 100, "event": "disconnect" },
+    { "offsetMs": 500, "event": "reconnect" }
+  ],
+  "injection": "none",
+  "adapter": {
+    "name": "reference",
+    "version": "0.1.0",
+    "endpoint": "fixture://reference",
+    "datastore": "fixture:memory"
+  }
+}

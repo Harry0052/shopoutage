@@ -1,6 +1,6 @@
 # Grokbot progress
 
-Current: **P01 PASS**. Next phase is P02.
+Current: **P02 PASS**. Next phase is P03.
 
 ## P01 — Research overlap and confirm the MVP
 
@@ -44,3 +44,41 @@ Current: **P01 PASS**. Next phase is P02.
 **Next phase:** P02 — Create the repository and data contracts.
 
 **Gate:** The overlap evidence supports a concrete MVP hypothesis (order-plus-stock report versus a connectivity check). Fixture data is generated in-repo. Toxiproxy and Odoo Community have a pinned, license-compatible provenance path and are not vendored. No existing workflow covers the acceptance case, so the decision is proceed rather than hold.
+
+## P02 — Create the repository and data contracts
+
+**Phase and status:** P02 PASS
+
+**Files changed:**
+
+- `package.json`, `package-lock.json`, `tsconfig.json`, `vitest.config.ts`, `.gitignore`
+- `src/cli.ts`, `src/index.ts`, `src/contracts/*`, `src/core/expected.ts`, `src/adapters/types.ts`, `src/store/sqlite.ts`
+- `fixtures/scenarios/*`, `fixtures/expected/*`, `fixtures/oracle/*`, `fixtures/manifest.json`
+- `docs/data-contract.md`, `README.md`, `docs/grokbot-progress.md`
+- `tests/validate.test.ts`, `tests/cli.test.ts`
+
+**Commands and results:**
+
+- `npm install` — added the lockfile. Direct devDependencies: `typescript@5.9.3`, `vitest@3.2.4`, `@types/node@22.19.0`. Runtime dependencies: none.
+- `npm test` (`tsc -p tsconfig.json && vitest run`) — 2 files, 10 tests passed. Node.js v22.23.4. `node:sqlite` prints an ExperimentalWarning once.
+- `node dist/cli.js validate fixtures/scenarios/baseline.json` — exit 0. `valid scenario baseline-s001 (schema 1.0.0, adapter reference 0.1.0). No data was mutated.`
+- `node dist/cli.js validate fixtures/scenarios/invalid-outside-network.json` — exit 2. `boundary: adapter.endpoint is "https://erp.example.com", which is outside the synthetic drill environment. Allowed values: fixture://reference, fixture://odoo. No data was mutated.`
+- `npm audit --omit=dev` — 0 vulnerabilities. `npm audit` reports 3 issues in the Vitest dev tree (`@vitest/mocker`, `tinypool`). Left for P05; they are not on the runtime path.
+
+**Artifact paths:**
+
+- Valid fixture: `fixtures/scenarios/baseline.json`
+- Invalid fixture: `fixtures/scenarios/invalid-outside-network.json`
+- Oracles: `fixtures/oracle/baseline.md`, `fixtures/oracle/duplicate-sale.md`, `fixtures/oracle/missing-stock.md`
+- Contract: `docs/data-contract.md`
+- Checksums: `fixtures/manifest.json` (seed `shopoutage-fixture-seed-v1`)
+
+**Open issues:**
+
+- Vitest 3.2.4 dev-tree advisories (GHSA-82fw-gwwq-j7x9, GHSA-qxg6-89mg-rqv8, GHSA-5gmw-xhrv-c9v3, GHSA-85c8-ppgw-ccpr). Runtime install is clean.
+- `node:sqlite` is experimental on Node 22.
+- Docker is still absent, so the Odoo adapter is specified and not executed.
+
+**Next phase:** P03 — Build the working core.
+
+**Gate:** The documented toolchain installs, `tsc` emits `dist/`, and the public CLI accepts the valid fixture and rejects the outside-network fixture with category `boundary` before any mutation.

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "scenarioId": "invalid-outside-network",
+  "timeOrigin": "2026-01-01T00:00:00.000Z",
+  "recoveryDeadlineMs": 5000,
+  "stabilityWindowMs": 1000,
+  "currency": "XTS",
+  "minorUnitScale": 100,
+  "seededSkus": [
+    {
+      "sku": "S-001",
+      "openingQty": 10,
+      "unitPrice": "5.00"
+    }
+  ],
+  "intents": [
+    {
+      "intentId": "intent-001",
+      "sku": "S-001",
+      "quantity": 2
+    }
+  ],
+  "connectivity": [
+    { "offsetMs": 0, "event": "submit" },
+    { "offsetMs": 100, "event": "disconnect" },
+    { "offsetMs": 500, "event": "reconnect" }
+  ],
+  "injection": "none",
+  "adapter": {
+    "name": "odoo",
+    "version": "18.0-20261112",
+    "endpoint": "https://erp.example.com",
+    "datastore": "postgres://inventory.example.com:5432/prod"
+  }
+}
