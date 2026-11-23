@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedBy": "hand",
+  "generationSeed": "shopoutage-fixture-seed-v1",
+  "notes": "Quantities are the playbook proof case (opening stock 10, sell 2 of S-001). They are not a random draw. The seed names this hand-authored set. Files are redistributable as part of this MIT repository. No personal data and no merchant data are included.",
+  "adapterVersion": {
+    "reference": "0.1.0",
+    "odooImage": "odoo:18.0-20261112",
+    "odooDebSha": "cd29eedcd78f286cd0e44958760f1fdaf8927dd3",
+    "toxiproxy": "2.13.0"
+  },
+  "timeOrigin": "2026-01-01T00:00:00.000Z",
+  "thirdParty": [
+    {
+      "name": "Odoo Community",
+      "url": "https://www.odoo.com/documentation/18.0/applications/sales/point_of_sale.html",
+      "source": "https://github.com/odoo/odoo",
+      "image": "odoo:18.0-20261112",
+      "digestNote": "Docker Hub library/odoo tag 18.0-20261112, manifest sha256:f5e18dea144c6054b2084874801283cf4e31868186415c19f21e3c0904545bec, deb SHA cd29eedcd78f286cd0e44958760f1fdaf8927dd3, observed 2026-11-23.",
+      "license": "LGPL-3.0-or-later",
+      "use": "Opt-in POS under test. Do not vendor the source tree. Pull the official image."
+    },
+    {
+      "name": "Toxiproxy",
+      "url": "https://github.com/Shopify/toxiproxy",
+      "version": "2.13.0",
+      "commit": "ff428b0",
+      "image": "ghcr.io/shopify/toxiproxy:2.13.0",
+      "digest": "sha256:5d3dae09bc185dcc5ff6cf43abf6062a4a720aff0c4306a471e773acdcd107aa",
+      "license": "MIT",
+      "use": "Opt-in TCP fault injection inside the fixture network only. Do not vendor the binary."
+    }
+  ],
+  "files": [
+    {
+      "path": "fixtures/expected/baseline.orders.jsonl",
+      "label": "expected-orders",
+      "sha256": "3474fce1d0a5fa9e47ff621b8c7c09e6c8a5379b489ee83b4b3bd0157dbeabb0"
+    },
+    {
+      "path": "fixtures/expected/baseline.report.json",
+      "label": "expected-report",
+      "sha256": "35ebdc72a400a2fba8388b50f354b183423cfbe63a40768c9b9d0e175f223df3"
+    },
+    {
+      "path": "fixtures/expected/duplicate-sale.orders.jsonl",
+      "label": "expected-orders",
+      "sha256": "6946e70abdd294187872dffb3784386bfdea613bbafc9593d6b784dbe9381c7b"
+    },
+    {
+      "path": "fixtures/expected/duplicate-sale.report.json",
+      "label": "expected-report",
+      "sha256": "cf57ddcd742ac261e7fa449853964fd2dcf8832cd413373ccb6cdd4acc28f7c7"
+    },
+    {
+      "path": "fixtures/expected/missing-stock.orders.jsonl",
+      "label": "expected-orders",
+      "sha256": "3474fce1d0a5fa9e47ff621b8c7c09e6c8a5379b489ee83b4b3bd0157dbeabb0"
+    },
+    {
+      "path": "fixtures/expected/missing-stock.report.json",
+      "label": "expected-report",
+      "sha256": "009a238edca28e246e7ec88d3f929ab5540cf0fc9533f307bab8c9f343d551e5"
+    },
+    {
+      "path": "fixtures/oracle/baseline.md",
+      "label": "oracle",
+      "sha256": "b40771ab0b8b5d5885e62ee8ea52a44dea60aa7e886243e27d3942f807987c36"
+    },
+    {
+      "path": "fixtures/oracle/duplicate-sale.md",
+      "label": "oracle",
+      "sha256": "89b930633488d90a18637def283eb4ed2d0b2bad3045078a9a4cac20b0ff4b36"
+    },
+    {
+      "path": "fixtures/oracle/missing-stock.md",
+      "label": "oracle",
+      "sha256": "edde6b6fc4664fdfa296dbed481b502ba01c5ef9382bc2e8ef5df3794b227b56"
+    },
+    {
+      "path": "fixtures/oracle/never-converges.md",
+      "label": "oracle",
+      "sha256": "626e095d73f5caf17c4ae020e6f4795bfa0c2ff88b8bdda1acdca3ccc43a7979"
+    },
+    {
+      "path": "fixtures/oracle/restart-after-ack.md",
+      "label": "oracle",
+      "sha256": "f7f9d1e76f7d63812cad0fb61766b497e7ea3b50dd762815db14950e06661e57"
+    },
+    {
+      "path": "fixtures/scenarios/baseline.json",
+      "label": "valid",
+      "sha256": "f0da56cacac9326ae2f6a441764b80c2c93797a222a656d7b1b0caffbc8effa0"
+    },
+    {
+      "path": "fixtures/scenarios/duplicate-sale.json",
+      "label": "valid",
+      "sha256": "871d9fd204d631b2896723032246e1c10ac212c69727ea2d6cb8c62ebf864b29"
+    },
+    {
+      "path": "fixtures/scenarios/invalid-outside-network.json",
+      "label": "invalid",
+      "sha256": "a05c2854b3328932febcb77db49f56b7ea7c0e0ecaec5f42b41ba374f94fdf6b"
+    },
+    {
+      "path": "fixtures/scenarios/missing-stock.json",
+      "label": "valid",
+      "sha256": "8aa87d9c3882d6e9a12365b95c267d76dbf223bace3088d3641bc41bfdf43e56"
+    },
+    {
+      "path": "fixtures/scenarios/never-converges.json",
+      "label": "valid",
+      "sha256": "8c86141deb064cfa56c82d0b16fde9cdbfb83ae920a4dea2f5177d63cc218dee"
+    },
+    {
+      "path": "fixtures/scenarios/odoo-baseline.json",
+      "label": "valid",
+      "sha256": "6f69e2cfeb6dd6e770056260058a008261aa19b6baa54ce50cd81c4c2caa4bac"
+    },
+    {
+      "path": "fixtures/scenarios/restart-after-ack.json",
+      "label": "valid",
+      "sha256": "2d8e1c09c60d4667efe9284b6bf4196f10b680675dc3f7b4653712a1e64caa79"
+    }
+  ]
+}

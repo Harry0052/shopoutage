@@ -1,0 +1,30 @@
+# Disposable Odoo fixture.
+# Containers use the host network because bridge TCP between containers timed out
+# in this environment (Postgres accepted connections on its own netns and did not
+# answer the bridge address). Listeners stay on loopback. Demo database passwords
+# in odoo.conf are fixture values, not real credentials.
+name: shopoutage-fixture
+services:
+  db:
+    image: postgres:15
+    network_mode: host
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_DB: postgres
+  toxiproxy:
+    image: ghcr.io/shopify/toxiproxy:2.13.0
+    network_mode: host
+    command: ["-host=127.0.0.1"]
+    depends_on: [odoo]
+  odoo:
+    image: odoo:18.0-20261112
+    network_mode: host
+    depends_on: [db]
+    environment:
+      HOST: 127.0.0.1
+      USER: odoo
+      PASSWORD: odoo
+    volumes:
+      - ./odoo.conf:/etc/odoo/odoo.conf:ro
+      - ${SHOPOUTAGE_FIXTURE_DIR:-/tmp/shopoutage-fixture}:/fixture

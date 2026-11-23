@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.0.0",
+  "scenarioId": "missing-stock-s001",
+  "state": "fail",
+  "adapter": {
+    "name": "reference",
+    "version": "0.1.0",
+    "coverage": "reference"
+  },
+  "timeOrigin": "2026-01-01T00:00:00.000Z",
+  "recoveryDeadlineMs": 5000,
+  "stabilityWindowMs": 1000,
+  "cutoff": {
+    "reached": true,
+    "stable": true,
+    "observationsPreserved": true
+  },
+  "timeline": [
+    { "offsetMs": 0, "event": "submit" },
+    { "offsetMs": 100, "event": "disconnect" },
+    { "offsetMs": 500, "event": "reconnect" }
+  ],
+  "orders": [
+    {
+      "intentId": "intent-001",
+      "sourceRowId": "order-1",
+      "sku": "S-001",
+      "quantity": 2,
+      "amountCents": 1000,
+      "status": "committed"
+    }
+  ],
+  "stock": [
+    {
+      "sku": "S-001",
+      "intentId": "intent-001",
+      "openingQty": 10,
+      "expectedQty": 8,
+      "observedQty": 10,
+      "sourceRowId": "stock-S-001"
+    }
+  ],
+  "discrepancies": {
+    "orders": [],
+    "stock": [
+      {
+        "intentId": "intent-001",
+        "sku": "S-001",
+        "sourceRowIds": ["stock-S-001"],
+        "kind": "missing-decrement",
+        "units": 2
+      }
+    ]
+  },
+  "limitations": [],
+  "mutatedOutsideFixture": false
+}

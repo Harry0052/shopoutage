@@ -1,0 +1,35 @@
+{
+  "observedAt": "2026-11-23",
+  "command": "node scripts/odoo-smoke.mjs fixtures/out/odoo-baseline-s001",
+  "images": {
+    "odoo": "odoo:18.0-20261112",
+    "odooDigest": "sha256:0bd79cf07f59105c5697667c2241b86447e99c6adb036200df0e4e295785bdf3",
+    "postgres": "postgres:15",
+    "postgresDigest": "sha256:8cf673eb99f8b9042c9078ee4ca0e775428c77097e9d999bfc9ba4b4347f5733",
+    "toxiproxy": "ghcr.io/shopify/toxiproxy:2.13.0",
+    "toxiproxyDigest": "sha256:5d3dae09bc185dcc5ff6cf43abf6062a4a720aff0c4306a471e773acdcd107aa"
+  },
+  "export": { "orders": [], "onHand": 10, "sku": "S-001", "orderCount": 0 },
+  "note": "Playwright signed in, opened the ShopOutage register, and clicked a two-unit cash payment for Drill Widget while the Toxiproxy listener was down, then re-enabled it. The Odoo export after that attempt contained no committed pos.order. Seeded stock remained 10. No duplicate was invented. Bridge networking between containers timed out in this environment, so the fixture used the host network with loopback listeners.",
+  "report": {
+    "schemaVersion": "1.0.0",
+    "scenarioId": "odoo-baseline-s001",
+    "state": "inconclusive",
+    "adapter": { "name": "odoo", "version": "18.0-20261112", "coverage": "odoo" },
+    "orders": [],
+    "stock": [
+      {
+        "sku": "S-001",
+        "intentId": "intent-001",
+        "openingQty": 10,
+        "expectedQty": 8,
+        "observedQty": 10,
+        "sourceRowId": "stock-S-001"
+      }
+    ],
+    "discrepancies": { "orders": [], "stock": [] },
+    "limitations": [
+      "No committed pos.order was exported. Stock on hand stayed at the seeded quantity. Order multiplicity was not judged. No duplicate was assumed."
+    ]
+  }
+}
